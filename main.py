@@ -6,6 +6,7 @@ import argparse
 import os
 import glob
 from datetime import datetime
+import chardet
 
 # =============================
 # Script principal de démonstration
@@ -90,7 +91,7 @@ if __name__ == "__main__":
     group.add_argument('--article-liste-on', nargs='*', help="Liste des types d'articles à exporter (ex: 50 52 75). Si non précisé, tous exportés.")
     parser.add_argument('--output-path', default='.', help='Répertoire de sortie (par défaut: répertoire courant). Le nom du fichier sera celui du fichier d\'entrée avec extension .json')
     parser.add_argument('--example', action='store_true', help='Afficher un exemple détaillé du premier article du type choisi (voir --article-liste-on)')
-    parser.add_argument('--encoding', default='windows-1252', help="Jeu de caractères du fichier TTH (par défaut: windows-1252). Exemple: utf-8, latin-1...")
+    parser.add_argument('--encoding', default='auto', help="Jeu de caractères du fichier TTH (par défaut: auto). Exemple: windows-1252, utf-8, latin-1... Si 'auto', autodétection avec chardet.")
     args = parser.parse_args()
 
     STRUCT_FILE = 'doc/structures_tth.js'
@@ -116,7 +117,17 @@ if __name__ == "__main__":
     for tth_file in tth_files:
         print_log(f"Début traitement fichier : {tth_file}")
         try:
-            hierarchical_articles = parse_and_build_hierarchy(tth_file, STRUCT_FILE, HIERARCHY_FILE, encoding=args.encoding)
+            # Détection ou usage de l'encodage
+            encoding = args.encoding
+            if encoding == 'auto':
+                with open(tth_file, 'rb') as f:
+                    raw = f.read(4096)
+                    detected = chardet.detect(raw)
+                    encoding = detected['encoding'] or 'windows-1252'
+                    print_log(f"Encodage détecté pour {tth_file} : {encoding}")
+            else:
+                print_log(f"Encodage forcé pour {tth_file} : {encoding}")
+            hierarchical_articles = parse_and_build_hierarchy(tth_file, STRUCT_FILE, HIERARCHY_FILE, encoding=encoding)
             input_basename = os.path.basename(tth_file)
             output_filename = input_basename + '.json'
             output_path = os.path.join(args.output_path, output_filename)
