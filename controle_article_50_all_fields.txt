@@ -1,0 +1,29 @@
+Tous les champs du premier article 50
+
+Ligne brute (longueur 497):
+5024001604  2SER1181010087053420R118101E14R 1111111111111111111111111111111111111111100111110011111111111100111110011111001111100111111111111001111111111111111111111111111111111011111111111111111111111111111111111111111111111001111111111111111111001111111111111111111111111111111111111111111111111111111100000000000011000000000000000000000000000000000100000011000001100000110000000000001100000000000000000000000000000000000000000000000000000000386011BV116210BV1287TBE03          745203   118118   
+
+numTribu                  | start=  2 | length=  8 | extrait: '24001604' | value: '24001604' | label: Numéro interne de la tribu
+marqueurInc               | start= 10 | length=  3 | extrait: '  2' | value: '2' | label: Marqueur incrémental
+marqueurType              | start= 13 | length=  3 | extrait: 'SER' | value: 'SER' | label: Marqueur type
+marcheDepart              | start= 16 | length=  6 | extrait: '118101' | value: '118101' | label: Numéro marche départ
+rgun                      | start= 22 | length=  4 | extrait: '0087' | value: '0087' | label: Code RGUN
+heureOrigine              | start= 26 | length=  6 | extrait: '053420' | value: '053420' | label: Heure théorique départ
+nature                    | start= 32 | length=  1 | extrait: 'R' | value: 'R' | label: Nature
+marcheComp                | start= 33 | length=  6 | extrait: '118101' | value: '118101' | label: Numéro marche complémentaire
+indiceCompo               | start= 39 | length=  5 | extrait: 'E14R ' | value: 'E14R' | label: Mnémo indice composition
+regimeBinaireCirculation  | start= 44 | length=400 | extrait: '1111111111111111111111111111111111111111100111110011111111111100111110011111001111100111111111111001111111111111111111111111111111111011111111111111111111111111111111111111111111111001111111111111111111001111111111111111111111111111111111111111111111111111111100000000000011000000000000000000000000000000000100000011000001100000110000000000001100000000000000000000000000000000000000000000000000000000' | value: '1111111111111111111111111111111111111111100111110011111111111100111110011111001111100111111111111001111111111111111111111111111111111011111111111111111111111111111111111111111111111001111111111111111111001111111111111111111111111111111111111111111111111111111100000000000011000000000000000000000000000000000100000011000001100000110000000000001100000000000000000000000000000000000000000000000000000000' | label: Régime compressé de circulation
+codeCIOrigine             | start=444 | length=  6 | extrait: '386011' | value: '386011' | label: Code CI origine
+codeCHOrigine             | start=450 | length=  2 | extrait: 'BV' | value: 'BV' | label: Code CH origine
+codeCITerminus            | start=452 | length=  6 | extrait: '116210' | value: '116210' | label: Code CI terminus
+codeCHTerminus            | start=458 | length=  2 | extrait: 'BV' | value: 'BV' | label: Code CH terminus
+UIOrigine                 | start=460 | length=  4 | extrait: '1287' | value: '1287' | label: Code UI origine
+TCTOrigine                | start=464 | length=  3 | extrait: 'TBE' | value: 'TBE' | label: Code TCT origine
+codeFamille               | start=467 | length=  2 | extrait: '03' | value: '03' | label: Code Famille
+codeMission               | start=469 | length=  4 | extrait: '    ' | value: '' | label: Code mission
+typeLigne                 | start=473 | length=  2 | extrait: '  ' | value: '' | label: Type de ligne
+indexation                | start=475 | length=  4 | extrait: '    ' | value: '' | label: Indexation
+hlpdu                     | start=479 | length=  9 | extrait: '745203   ' | value: '745203' | label: HlpDu
+hlppour                   | start=488 | length=  9 | extrait: '118118   ' | value: '118118' | label: HlpPour
+
+Nombre total de champs exportés : 22

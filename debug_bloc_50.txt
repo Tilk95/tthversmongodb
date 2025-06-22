@@ -1,0 +1,4 @@
+Bloc extrait pour structure_article_50 :
+
+
+    ["numTribu",                  2,   8, "", "", "", "", "Numéro interne de la tribu"
