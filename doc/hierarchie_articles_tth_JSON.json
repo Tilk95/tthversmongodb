@@ -1,75 +1,50 @@
 {
-  "01": {
-    "label": "ARTICLE DE GESTION des fichiers de DONNEES",
+  "01": { "label": "ARTICLE DE GESTION des fichiers de DONNEES" },
+  "50": {
+    "label": "INFORMATIONS Train / Type / HOUAT",
     "children": {
-      "50": {
-        "label": "INFORMATIONS Train / Type / HOUAT",
+      "5A": { "label": "SDM en cours de construction" },
+      "5B": { "label": "Information Indice de bascule au départ « Offset »" },
+      "54": {
+        "label": "INFORMATIONS DOSSIER PARTICIPANT AU TTH",
         "children": {
-          "5A": { "label": "SDM en cours de construction" },
-          "5B": { "label": "Information Indice de bascule au départ « Offset »" },
-          "54": {
-            "label": "INFORMATIONS DOSSIER PARTICIPANT AU TTH",
-            "children": {
-              "59": { "label": "INFORMATIONS OPERATION du dossier AVT participant au TTH" }
-            }
-          },
-          "55": { "label": "INFORMATIONS RENVOI TTH" },
-          "56": { "label": "INFORMATIONS Fiche OPE participant au TTH" },
-          "57": { "label": "INFORMATIONS Région Traversée par le TTH" },
-          "75": { "label": "INFORMATIONS N° de Commande participant au TTH" },
-          "77": { "label": "INFORMATIONS Taux de Marges sur TTH" },
-          "78": { "label": "INFORMATIONS Engin de Calcul sur TTH" },
-          "79": { "label": "INFORMATIONS Indice de Vitesse sur TTH" },
-          "7A": { "label": "INFORMATIONS Type Calcul sur TTH" },
-          "7B": { "label": "INFORMATIONS Matériel Remorqué sur TTH" },
-          "7C": { "label": "INFORMATIONS Vitesse Limite sur TTH" },
-          "7D": { "label": "INFORMATIONS Renfort sur TTH" },
-          "7E": { "label": "INFORMATIONS Commentaire Fiche Tracé sur TTH" },
-          "7F": { "label": "INFORMATIONS Restriction Circulation sur TTH" },
-          "8A": { "label": "INFORMATIONS Variante et Origine de la conception horaire" },
-          "52": {
-            "label": "INFORMATIONS PH TTH",
-            "children": {
-              "53": { "label": "INFORMATIONS SIGNES CONVENTIONNELS au PH" },
-              "72": { "label": "INFORMATIONS GOV VOIES LOCALES" },
-              "73": { "label": "INFORMATIONS GOV EQUILIBRE" },
-              "74": { "label": "INFORMATIONS GOV COMPOSITION/LONGUEUR" },
-              "58": { "label": "INFORMATIONS Train CROISEUR ou DEPASSEUR au PH" },
-              "76": { "label": "INFORMATIONS Données complémentaires Vitesses" },
-              "7H": { "label": "INFORMATIONS Reperage sur voie en enrichissement de l’article" },
-              "7G": { "label": "INFORMATIONS Réception Voie Occupée" },
-              "63": { "label": "INFORMATIONS VOIES LOCALES EN LIGNE" }
-            }
-          },
-          "80": {
-            "label": "INFORMATIONS FICHE OPE",
-            "children": {
-              "81": { "label": "INFORMATIONS TRIBUS IMPACTEES par une FICHE OPE" }
-            }
-          }
+          "59": { "label": "INFORMATIONS OPERATION du dossier AVT participant au TTH" }
         }
       },
-      "60": {
-        "label": "INFORMATIONS DOSSIER ADAPTATION",
+      "55": { "label": "INFORMATIONS RENVOI TTH" },
+      "56": { "label": "INFORMATIONS Fiche OPE participant au TTH" },
+      "57": { "label": "INFORMATIONS Région Traversée par le TTH" },
+      "75": { "label": "INFORMATIONS N° de Commande participant au TTH" },
+      "77": { "label": "INFORMATIONS Taux de Marges sur TTH" },
+      "78": { "label": "INFORMATIONS Engin de Calcul sur TTH" },
+      "79": { "label": "INFORMATIONS Indice de Vitesse sur TTH" },
+      "7A": { "label": "INFORMATIONS Type Calcul sur TTH" },
+      "7B": { "label": "INFORMATIONS Matériel Remorqué sur TTH" },
+      "7C": { "label": "INFORMATIONS Vitesse Limite sur TTH" },
+      "7D": { "label": "INFORMATIONS Renfort sur TTH" },
+      "7E": { "label": "INFORMATIONS Commentaire Fiche Tracé sur TTH" },
+      "7F": { "label": "INFORMATIONS Restriction Circulation sur TTH" },
+      "8A": { "label": "INFORMATIONS Variante et Origine de la conception horaire" },
+      "52": {
+        "label": "INFORMATIONS PH TTH",
         "children": {
-          "61": { "label": "INFORMATIONS TRIBUS IMPACTEES PAR un DOSSIER d’ADAPTATION" }
+          "53": { "label": "INFORMATIONS SIGNES CONVENTIONNELS au PH" },
+          "72": { "label": "INFORMATIONS GOV VOIES LOCALES" },
+          "73": { "label": "INFORMATIONS GOV EQUILIBRE" },
+          "74": { "label": "INFORMATIONS GOV COMPOSITION/LONGUEUR" },
+          "58": { "label": "INFORMATIONS Train CROISEUR ou DEPASSEUR au PH" },
+          "76": { "label": "INFORMATIONS Données complémentaires Vitesses" },
+          "7H": { "label": "INFORMATIONS Reperage sur voie en enrichissement de l’article" },
+          "7G": { "label": "INFORMATIONS Réception Voie Occupée" },
+          "63": { "label": "INFORMATIONS VOIES LOCALES EN LIGNE" }
         }
       },
-      "70": { "label": "INFORMATIONS TRIBUS SUPPRIMEES" },
-      "90": {
-        "label": "INFORMATIONS DOSSIER ADAPTATION",
+      "80": {
+        "label": "INFORMATIONS FICHE OPE",
         "children": {
-          "91": { "label": "INFORMATIONS CONCEPTEUR du dossier d'adaptation" },
-          "92": { "label": "INFORMATIONS OBJET de la page de garde du dossier d'adaptation" },
-          "98": { "label": "INFORMATIONS FH Sillon impacté / Opération de Page de Garde" }
+          "81": { "label": "INFORMATIONS TRIBUS IMPACTEES par une FICHE OPE" }
         }
       }
-    }
-  },
-  "02": {
-    "label": "ARTICLE DE GESTION du fichier PILOTE",
-    "children": {
-      "11": { "label": "INFORMATIONS FICHIERS" }
     }
   }
 }

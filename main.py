@@ -25,13 +25,13 @@ DEBUG_BLOC_FILE = 'debug_bloc_50.txt'
 def print_log(message):
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {message}")
 
-def parse_and_build_hierarchy(tth_file, struct_file, hierarchy_file):
+def parse_and_build_hierarchy(tth_file, struct_file, hierarchy_file, encoding='windows-1252'):
     """
     Parse le fichier TTH, charge la structure et la hiérarchie, et construit l'arbre hiérarchique.
     Retourne la liste hiérarchique d'articles.
     """
     structures = load_article_structures(struct_file, encoding='utf-8')
-    articles = parse_tth_file(tth_file, structures)
+    articles = parse_tth_file(tth_file, structures, encoding=encoding)
     hierarchy = load_hierarchy(hierarchy_file, encoding='utf-8')
     hierarchical_articles = build_hierarchical_articles_sequential(articles, hierarchy)
     return hierarchical_articles
@@ -90,6 +90,7 @@ if __name__ == "__main__":
     group.add_argument('--article-liste-on', nargs='*', help="Liste des types d'articles à exporter (ex: 50 52 75). Si non précisé, tous exportés.")
     parser.add_argument('--output-path', default='.', help='Répertoire de sortie (par défaut: répertoire courant). Le nom du fichier sera celui du fichier d\'entrée avec extension .json')
     parser.add_argument('--example', action='store_true', help='Afficher un exemple détaillé du premier article du type choisi (voir --article-liste-on)')
+    parser.add_argument('--encoding', default='windows-1252', help="Jeu de caractères du fichier TTH (par défaut: windows-1252). Exemple: utf-8, latin-1...")
     args = parser.parse_args()
 
     STRUCT_FILE = 'doc/structures_tth.js'
@@ -115,40 +116,60 @@ if __name__ == "__main__":
     for tth_file in tth_files:
         print_log(f"Début traitement fichier : {tth_file}")
         try:
-            hierarchical_articles = parse_and_build_hierarchy(tth_file, STRUCT_FILE, HIERARCHY_FILE)
+            hierarchical_articles = parse_and_build_hierarchy(tth_file, STRUCT_FILE, HIERARCHY_FILE, encoding=args.encoding)
             input_basename = os.path.basename(tth_file)
             output_filename = input_basename + '.json'
             output_path = os.path.join(args.output_path, output_filename)
 
             def filtre_article(code):
+                # Exclure systématiquement les articles 01 et 02
+                if code in ('01', '02'):
+                    return False
                 if args.article_liste_on:
                     return code in args.article_liste_on
-                return True
+                return True  # Par défaut, tout exporter sauf 01 et 02
 
             def export_ndjson_filtre(hierarchical_articles, output_file):
-                def find_all(arts):
-                    for art in arts:
-                        if filtre_article(art.code):
-                            yield art
-                        yield from find_all(art.children)
-                def article_to_dict(art):
-                    if args.article_liste_on:
-                        return {
-                            'code': art.code,
-                            'values': art.values,
-                            'children': []
-                        }
-                    else:
-                        return {
-                            'code': art.code,
-                            'values': art.values,
-                            'children': [article_to_dict(c) for c in art.children]
-                        }
+                def article_to_dict_filtered(art):
+                    # Filtrage récursif de la hiérarchie selon --article-liste-on
+                    if not filtre_article(art.code):
+                        # On ne garde pas ce nœud, mais on regarde ses enfants
+                        res = []
+                        for child in art.children:
+                            d = article_to_dict_filtered(child)
+                            if d:
+                                res.append(d)
+                        return res if res else None
+                    # On garde ce nœud, on filtre ses enfants
+                    return {
+                        'code': art.code,
+                        'values': art.values,
+                        'children': [c for c in (article_to_dict_filtered(child) for child in art.children) if c and not isinstance(c, list)] + [item for c in (article_to_dict_filtered(child) for child in art.children) if isinstance(c, list) for item in c]
+                    }
+                def article_to_dict_full(art):
+                    return {
+                        'code': art.code,
+                        'values': art.values,
+                        'children': [article_to_dict_full(c) for c in art.children]
+                    }
                 nb_exportes = 0
                 with open(output_file, 'w', encoding='utf-8') as f:
-                    for art in find_all(hierarchical_articles):
-                        f.write(json.dumps(article_to_dict(art), ensure_ascii=False) + '\n')
-                        nb_exportes += 1
+                    if args.article_liste_on:
+                        # On exporte tous les sous-arbres dont la racine ou un descendant est dans la liste
+                        for art in hierarchical_articles:
+                            d = article_to_dict_filtered(art)
+                            if d:
+                                if isinstance(d, list):
+                                    for sub in d:
+                                        f.write(json.dumps(sub, ensure_ascii=False) + '\n')
+                                        nb_exportes += 1
+                                else:
+                                    f.write(json.dumps(d, ensure_ascii=False) + '\n')
+                                    nb_exportes += 1
+                    else:
+                        for art in hierarchical_articles:
+                            f.write(json.dumps(article_to_dict_full(art), ensure_ascii=False) + '\n')
+                            nb_exportes += 1
                 print_log(f"Export NDJSON terminé : {nb_exportes} articles exportés dans {output_file}")
                 return nb_exportes
 
