@@ -85,8 +85,15 @@ def afficher_exemple(hierarchical_articles, article_type):
         print(f"Aucun article {article_type} trouvé.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convertisseur TTH -> NDJSON avec gestion de la hiérarchie.")
+    # Bandeau ASCII
+    print("""
+====================================
+   tthversmongodb - TTH → NDJSON
+====================================
+    """)
+    parser = argparse.ArgumentParser(description="tthversmongodb : Convertisseur TTH → NDJSON hiérarchique pour MongoDB.")
     parser.add_argument('--tth-file', required=True, help='Fichier source TTH à parser (.dat) OU répertoire contenant des fichiers .dat (majuscules/minuscules)')
+
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--article-liste-on', nargs='*', help="Liste des types d'articles à exporter (ex: 50 52 75). Si non précisé, tous exportés.")
     parser.add_argument('--output-path', default='.', help='Répertoire de sortie (par défaut: répertoire courant). Le nom du fichier sera celui du fichier d\'entrée avec extension .json')
@@ -94,8 +101,8 @@ if __name__ == "__main__":
     parser.add_argument('--encoding', default='auto', help="Jeu de caractères du fichier TTH (par défaut: auto). Exemple: windows-1252, utf-8, latin-1... Si 'auto', autodétection avec chardet.")
     args = parser.parse_args()
 
-    STRUCT_FILE = 'doc/structures_tth.js'
-    HIERARCHY_FILE = 'doc/hierarchie_articles_tth_JSON.json'
+    STRUCT_FILE = 'structures_tth.js'
+    HIERARCHY_FILE = 'hierarchie_articles_tth_JSON.json'
 
     # Détection fichier ou dossier
     tth_files = []
