@@ -47,6 +47,7 @@ dans le cas ou il y aurat un probléme de jeu de caractére en alerter l'utilisa
 
 ## 2. Conception de l'architecture
 - [ ] Définir les modules principaux :
+
   - [ ] Lecture et parsing TTH
   - [ ] Gestion de la hiérarchie
   - [ ] Conversion TTH → NDJSON
